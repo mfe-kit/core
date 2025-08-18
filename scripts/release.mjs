@@ -20,14 +20,17 @@ if (!['patch', 'minor', 'major'].includes(type)) {
 }
 
 // --- Step 1: git pull to sync ---
+console.log('🔄 Syncing with remote...');
 safeRun('git pull origin main');
 
 // --- Step 2: read package.json ---
+console.log('📖 Reading package.json...');
 const pkgPath = './package.json';
 const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 const [maj, min, pat] = pkg.version.split('.').map(Number);
 
 // --- Step 3: bump version ---
+console.log(`🔢 Bumping ${type} version...`);
 switch (type) {
   case 'major':
     pkg.version = `${maj + 1}.0.0`;
@@ -42,14 +45,22 @@ switch (type) {
 fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
 const newVersion = `v${pkg.version}`;
 
-// --- Step 4: commit package.json ---
+// --- Step 4: build the library ---
+console.log('🔨 Building library...');
+safeRun('npm run build');
+
+// --- Step 5: commit package.json ---
+console.log('📦 Committing package.json and built files...');
 safeRun('git add package.json package-lock.json');
+safeRun('git add dist/ -f');
 safeRun(`git commit -m "Release ${newVersion}"`);
 
 // --- Step 6: create tag ---
+console.log(`🏷️  Creating tag ${newVersion}...`);
 safeRun(`git tag ${newVersion}`);
 
 // --- Step 7: push branch + tag ---
+console.log('🚀 Pushing to remote...');
 safeRun(`git push origin main`);
 safeRun(`git push origin ${newVersion}`);
 
