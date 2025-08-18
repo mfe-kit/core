@@ -27,7 +27,8 @@ jobs:
       - name: Package library
         run: |
           mkdir release
-          cp -r dist/* package.json README.md release/
+          cp -r dist release/
+          cp package.json README.md release/
           zip -r my-lib-${GITHUB_REF_NAME}.zip release
 
       - name: Create GitHub release
