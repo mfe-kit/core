@@ -37,11 +37,11 @@ jobs:
           name: Release ${{ github.ref_name }}
           body: 'Release ${{ github.ref_name }}'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Upload release asset
         uses: softprops/action-gh-release@v1
         with:
           files: my-lib-${{ github.ref_name }}.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
