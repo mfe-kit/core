@@ -132,3 +132,16 @@ jobs:
           cp package.json README.md release/
           cd release
           zip -r ../mfe-kit-core-v${{ needs.version-check.outputs.current_version }}.zip .
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.version-check.outputs.current_version }}
+          name: v${{ needs.version-check.outputs.current_version }}
+          body: 'Automated release of v${{ needs.version-check.outputs.current_version }}'
+          draft: false
+          prerelease: false
+          files: |
+            mfe-kit-core-v${{ needs.version-check.outputs.current_version }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
