@@ -58,9 +58,11 @@ const service = new TranslationService<
 >(resources);
 
 let errorsCounter: number;
+let successCounter: number;
 
 function runTests() {
   errorsCounter = 0;
+  successCounter = 0;
   // Test useLocale function
   executeTest('useLocale function', () => {
     service.useLocale('en_GB');
@@ -169,9 +171,9 @@ function runTests() {
   });
 
   if (!errorsCounter) {
-    console.log(`\n${COLORS.green}====================`);
-    console.log(`🎉 All tests passed`);
-    console.log(`====================${COLORS.reset}`);
+    console.log(`\n${COLORS.green}=======================`);
+    console.log(`🎉 All tests passed: ${successCounter}`);
+    console.log(`=======================${COLORS.reset}`);
   } else {
     console.log(`\n${COLORS.red}===========================`);
     console.log(`🔴 Failed tests counter: ${errorsCounter}`);
@@ -182,6 +184,7 @@ function runTests() {
 function executeTest(name: string, cb: () => void): void {
   try {
     cb();
+    successCounter++;
     console.log(`${COLORS.green}✅ Test passed: ${name}${COLORS.reset}`);
   } catch (e) {
     errorsCounter++;
