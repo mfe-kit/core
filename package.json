@@ -1,6 +1,6 @@
 {
   "name": "@mfe-kit/core",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -30,7 +30,7 @@
     "check:fix": "prettier --ignore-path .gitignore --write src && eslint --fix src"
   },
   "devDependencies": {
-    "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.0.7",
+    "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.2.3",
     "@types/node": "^24.3.0",
     "esbuild": "^0.25.8",
     "eslint": "^9.31.0",
