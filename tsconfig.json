@@ -3,8 +3,8 @@
   "compilerOptions": {
     "outDir": "dist",
     "types": ["node"],
-    "sourceMap": false,
-    "inlineSourceMap": true,
+    "sourceMap": true,
+    "inlineSourceMap": false,
     "inlineSources": true
   },
   "include": ["src"],
