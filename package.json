@@ -24,16 +24,19 @@
     "version:patch": "npm version patch --no-git-tag-version",
     "version:minor": "npm version minor --no-git-tag-version",
     "version:major": "npm version major --no-git-tag-version",
+    "test": "tsx ./src/tests.ts",
     "lint": "eslint src",
     "check": "prettier --ignore-path .gitignore --check src",
     "check:fix": "prettier --ignore-path .gitignore --write src && eslint --fix src"
   },
   "devDependencies": {
     "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.0.7",
+    "@types/node": "^24.3.0",
     "esbuild": "^0.25.8",
     "eslint": "^9.31.0",
     "husky": "^9.1.7",
     "prettier": "^3.6.2",
+    "tsx": "^4.20.5",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.37.0",
     "vite": "^6.3.5"

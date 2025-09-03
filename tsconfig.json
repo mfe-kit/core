@@ -1,7 +1,12 @@
 {
   "extends": ["@mfe-kit/dev-tools/tsconfig.base.json"],
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": ["node"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+      "**/*.spec.ts",
+      "**/tests.ts"
+    ]
 }
