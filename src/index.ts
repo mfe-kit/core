@@ -1,2 +1,2 @@
-export * from './decorators/index';
-export * from './translations/index';
+export * from './decorators/index.js';
+export * from './translations/index.js';
