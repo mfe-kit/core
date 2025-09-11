@@ -1,14 +1,9 @@
-import * as assert from 'assert';
+import assert from 'assert';
 import { TranslationService, type PathInto } from './index';
+import { createTestExecutor, type TestCounters } from '../utils';
 
 type Resource = typeof en_GB;
 type Locale = 'en_GB' | 'uk_UA';
-
-const COLORS: Record<string, string> = {
-  reset: '\x1b[0m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-};
 
 const en_GB = {
   general: {
@@ -57,12 +52,8 @@ const service = new TranslationService<
   Resource
 >(resources);
 
-let errorsCounter: number;
-let successCounter: number;
-
-function runTests() {
-  errorsCounter = 0;
-  successCounter = 0;
+export function runTests(counters: TestCounters) {
+  const executeTest = createTestExecutor(counters);
   // Test useLocale function
   executeTest('useLocale function', () => {
     service.useLocale('en_GB');
@@ -169,29 +160,4 @@ function runTests() {
     );
     assert.strictEqual(result, '');
   });
-
-  if (!errorsCounter) {
-    console.log(`\n${COLORS.green}=======================`);
-    console.log(`🎉 All tests passed: ${successCounter}`);
-    console.log(`=======================${COLORS.reset}`);
-  } else {
-    console.log(`\n${COLORS.red}===========================`);
-    console.log(`🔴 Failed tests counter: ${errorsCounter}`);
-    console.log(`===========================${COLORS.reset}`);
-  }
 }
-
-function executeTest(name: string, cb: () => void): void {
-  try {
-    cb();
-    successCounter++;
-    console.log(`${COLORS.green}✅ Test passed: ${name}${COLORS.reset}`);
-  } catch (e) {
-    errorsCounter++;
-    console.log(
-      `${COLORS.red}❌ Test failed: ${name}${COLORS.reset}\n${(e as Error).message}`,
-    );
-  }
-}
-
-runTests();
