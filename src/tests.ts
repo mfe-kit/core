@@ -20,7 +20,7 @@ async function runTests(dir: string) {
       await runTests(fullPath);
     } else if (file.endsWith('.spec.ts')) {
       console.log(
-        `\n${COLORS.magenta}Running${COLORS.reset} ${COLORS.cyan}${fullPath}${COLORS.reset}`,
+        `\n${COLORS.magenta}Running${COLORS.reset} ${COLORS.cyan}${fullPath.split('core/')[1]}${COLORS.reset}`,
       );
       try {
         const mod = await import(pathToFileURL(fullPath).href);

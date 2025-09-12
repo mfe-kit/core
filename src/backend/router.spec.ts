@@ -10,6 +10,7 @@ import {
 
 export function runTests(counters: TestCounters) {
   const executeTest = createTestExecutor(counters);
+
   executeTest('router instance', () => {
     assert.notStrictEqual(coreRouter, undefined);
     assert.strictEqual(typeof coreRouter, 'object');

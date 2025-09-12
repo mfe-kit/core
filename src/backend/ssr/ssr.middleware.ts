@@ -8,7 +8,7 @@ global.HTMLElement = jsdom.window.HTMLElement;
 global.customElements = jsdom.window.customElements;
 global.CustomEvent = jsdom.window.CustomEvent;
 
-const vite = await createViteServer({
+export const vite = await createViteServer({
   server: { middlewareMode: true },
   mode: 'development',
   configFile: false,
