@@ -33,10 +33,10 @@ export function Attribute() {
     };
 }
 export function Watch(attr) {
-    return function (_, propertyKey) {
-        if (typeof propertyKey === 'string') {
+    return function (_, functionName) {
+        if (typeof functionName === 'string') {
             const attrName = toKebabCase(attr);
-            watchers.set(attrName, propertyKey);
+            watchers.set(attrName, functionName);
         }
     };
 }
