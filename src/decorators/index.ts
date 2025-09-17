@@ -1,6 +1,14 @@
 const observedAttributes: Array<string> = [];
 const watchers = new Map<string, string>();
 
+function toKebabCase(str: string): string {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+function toCamelCase(str: string): string {
+  return str.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+}
+
 export function Component(constructor: Function): void {
   Object.defineProperty(constructor, 'observedAttributes', {
     get() {
@@ -14,7 +22,8 @@ export function Component(constructor: Function): void {
     oldVal: string,
     newVal: string,
   ) {
-    this[name] = newVal;
+    const propertyName = toCamelCase(name);
+    this[propertyName] = newVal;
     const method = watchers.get(name);
     if (method && typeof this[method] === 'function') {
       this[method](oldVal, newVal);
@@ -24,19 +33,20 @@ export function Component(constructor: Function): void {
 
 export function Attribute(): PropertyDecorator {
   return function (_: unknown, propertyKey: string | symbol) {
-    if (
-      typeof propertyKey === 'string' &&
-      !observedAttributes.includes(propertyKey)
-    ) {
-      observedAttributes.push(propertyKey);
+    if (typeof propertyKey === 'string') {
+      const attrName = toKebabCase(propertyKey);
+      if (!observedAttributes.includes(attrName)) {
+        observedAttributes.push(attrName);
+      }
     }
   };
 }
 
 export function Watch(attr: string): MethodDecorator {
-  return function (_: unknown, propertyKey: string | symbol) {
-    if (typeof propertyKey === 'string') {
-      watchers.set(attr, propertyKey);
+  return function (_: unknown, functionName: string | symbol) {
+    if (typeof functionName === 'string') {
+      const attrName = toKebabCase(attr);
+      watchers.set(attrName, functionName);
     }
   };
 }
