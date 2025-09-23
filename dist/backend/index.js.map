@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/backend/index.ts"],"names":[],"mappings":"AAAA,cAAc,aAAa,CAAC;AAC5B,cAAc,yBAAyB,CAAC","sourcesContent":["export * from './router.js';\nexport * from './ssr/ssr.middleware.js';\n"]}
