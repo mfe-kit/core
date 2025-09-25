@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "stabilityDays": 5,
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^@mfe-kit/dev-tools$"],
+      "automerge": true,
+      "stabilityDays": 0
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ]
+}
