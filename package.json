@@ -36,7 +36,7 @@
   "devDependencies": {
     "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.5.15",
     "@types/node": "^24.3.0",
-    "@types/jsdom": "^27.0.0",
+    "@types/jsdom": "^28.0.0",
     "esbuild": "^0.25.8",
     "eslint": "^9.31.0",
     "husky": "^9.1.7",
