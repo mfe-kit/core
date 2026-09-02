@@ -36,7 +36,7 @@
   "devDependencies": {
     "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.5.15",
     "@types/node": "^24.3.0",
-    "@types/jsdom": "^27.0.0",
+    "@types/jsdom": "^30.0.0",
     "esbuild": "^0.25.8",
     "eslint": "^9.31.0",
     "husky": "^9.1.7",
@@ -47,7 +47,7 @@
   },
   "peerDependencies": {
     "vite": "^7.1.4",
-    "jsdom": "^26.1.0 || ^27.0.0",
+    "jsdom": "^26.1.0 || ^27.0.0 || ^30.0.0",
     "@hono/node-server": "^1.14.3"
   }
 }
